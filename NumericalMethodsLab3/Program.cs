@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data;
+using CalcEqs;
+using System.Text;
 
 namespace NumericalMethodsLab3;
 
@@ -8,6 +10,7 @@ class Program
 
     static void Main(string[] args)
     {
+        Console.OutputEncoding = Encoding.UTF8;
         const int rootCount = 10;
         double a = -1;
         double b = 0;
@@ -19,20 +22,34 @@ class Program
             nodeTable[i, 0] = GetChebPolRoot(a, b, rootCount, i);
             nodeTable[i, 1] = CurrentFunc(nodeTable[i, 0]);
         }
+        Console.WriteLine("Вузли: ");
         ShowTableNode(nodeTable);
-        double[,] nodeTable2 = new double[3, 2];
-        nodeTable2[0, 0] = 0;
-        nodeTable2[1, 0] = 1;
-        nodeTable2[2, 0] = 4;
-        nodeTable2[0, 1] = -1;
-        nodeTable2[1, 1] = 1;
-        nodeTable2[2, 1] = 1;
-        LagrangePolynomial = GetLagrangePolynomial(nodeTable, rootCount);
-        ShowPolynomial(LagrangePolynomial);
+        Console.WriteLine();
+
+        Console.WriteLine("Пряма інтерполяція: ");
+        LagrangePolynomial = GetLagrangePolynomial(nodeTable, rootCount, true);
+        Console.WriteLine("Інтерполяційний поліном Лагранжа (L(x)): ");
+        ShowPolynomial(LagrangePolynomial, "x");
+        Console.WriteLine("Рівняння: L(x) = 0");
+        Console.WriteLine("Метод релаксації: ");
+        Ilogger logger = new ConsoleLogger();
+        IEqsFunction eqsFunction = new RelaxationCalc(-1, 0, 1, 8.83945, 1E-4, false, logger);
+        Console.WriteLine($"{new String(' ', 24)}Xn ## {new String(' ', 11)}|X(n) - X(n+1)|");
+        double res = eqsFunction.Calc(
+            (x) => { return 0.000001 * Math.Pow(x, 9) + 0.000028 * Math.Pow(x, 8) + 0.000003 * Math.Pow(x, 7) - 0.001387 * Math.Pow(x, 6) + 0.000001 * Math.Pow(x, 5) + 0.041667 * Math.Pow(x, 4) + Math.Pow(x, 3) - 2.5 * Math.Pow(x, 2) + x + 2; },
+            -0.5);
+        Console.WriteLine($"Результат: {res}");
+        Console.WriteLine();
+
+        Console.WriteLine("Обернена інтерполяція: ");
+        LagrangePolynomial = GetLagrangePolynomial(nodeTable, rootCount, false);
+        Console.WriteLine("Інтерполяційний поліном Лагранжа (L(y)): ");
+        ShowPolynomial(LagrangePolynomial, "y");
+        Console.WriteLine("Рівняння: L(0) = x");
+        res = LagrangePolynomial.Find(0).Coefficient;
+        Console.WriteLine($"Результат: {res}");
 
         Console.Read();
-        
-
     }
 
     public static double GetChebPolRoot(double a, double b, int n, int k)
@@ -47,7 +64,7 @@ class Program
             Console.WriteLine($"X{i}={table[i, 0],22}   |   F(X{i})={table[i, 1],22}");
         }
     }
-    public static void ShowPolynomial(Polynomial polynomial)
+    public static void ShowPolynomial(Polynomial polynomial, string varLetter)
     {
         int i = 0;
         foreach (var item in polynomial.ToArray())
@@ -56,7 +73,7 @@ class Program
             {
                 if (item.Degree != 0)
                 {
-                    Console.Write($"({item.Coefficient:f6})*x^({item.Degree})+");
+                    Console.Write($"({item.Coefficient:f6})*{varLetter}^({item.Degree})+");
                 }
                 else
                 {
@@ -68,7 +85,7 @@ class Program
             {
                 if (item.Degree != 0)
                 {
-                    Console.Write($"({item.Coefficient:f6})*x^({item.Degree})");
+                    Console.Write($"({item.Coefficient:f6})*{varLetter}^({item.Degree})");
                 }
                 else
                 {
@@ -78,10 +95,17 @@ class Program
             }
             i++;
         }
+        Console.WriteLine();
     }
 
-    public static Polynomial GetLagrangePolynomial(double[,] nodes, int n)
+    public static Polynomial GetLagrangePolynomial(double[,] nodes, int n, bool isNotReverse)
     {
+        int xIndex = 0, yIndex = 1;
+        if (!isNotReverse)
+        {
+            xIndex = 1;
+            yIndex = 0;
+        }
         Polynomial resPol = new Polynomial();
         for (int i = 0; i < n; i++)
         {
@@ -94,9 +118,9 @@ class Program
                 {
                     Polynomial polynomial1 = new Polynomial();
                     polynomial1.AddMember((1, 1));
-                    if (nodes[j, 0] != 0)
+                    if (nodes[j, xIndex] != 0)
                     {
-                        polynomial1.AddMember((0, -nodes[j, 0]));
+                        polynomial1.AddMember((0, -nodes[j, xIndex]));
                     }
                     polynomial = polynomial.Multiply(polynomial1);
                 }
@@ -107,11 +131,11 @@ class Program
             {
                 if (i != j)
                 {
-                    divider *= nodes[i, 0] - nodes[j, 0];
+                    divider *= nodes[i, xIndex] - nodes[j, xIndex];
                 }
             }
             polynomial = polynomial.Multiply((0, 1.0 / divider));
-            polynomial = polynomial.Multiply((0, nodes[i, 1]));
+            polynomial = polynomial.Multiply((0, nodes[i, yIndex]));
 
             resPol = resPol.Add(polynomial);
         }

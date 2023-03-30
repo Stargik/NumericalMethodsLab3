@@ -9,8 +9,10 @@
 
   <ItemGroup>
     <None Remove="Exceptions\" />
+    <None Remove="EqCalc\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
+    <Folder Include="EqCalc\" />
   </ItemGroup>
 </Project>
