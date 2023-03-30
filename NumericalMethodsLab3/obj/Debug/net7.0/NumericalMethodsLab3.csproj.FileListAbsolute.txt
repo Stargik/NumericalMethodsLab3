@@ -1,0 +1,15 @@
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/bin/Debug/net7.0/NumericalMethodsLab3
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/bin/Debug/net7.0/NumericalMethodsLab3.deps.json
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/bin/Debug/net7.0/NumericalMethodsLab3.runtimeconfig.json
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/bin/Debug/net7.0/NumericalMethodsLab3.dll
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/bin/Debug/net7.0/NumericalMethodsLab3.pdb
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/obj/Debug/net7.0/NumericalMethodsLab3.csproj.AssemblyReference.cache
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/obj/Debug/net7.0/NumericalMethodsLab3.GeneratedMSBuildEditorConfig.editorconfig
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/obj/Debug/net7.0/NumericalMethodsLab3.AssemblyInfoInputs.cache
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/obj/Debug/net7.0/NumericalMethodsLab3.AssemblyInfo.cs
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/obj/Debug/net7.0/NumericalMethodsLab3.csproj.CoreCompileInputs.cache
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/obj/Debug/net7.0/NumericalMethodsLab3.dll
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/obj/Debug/net7.0/refint/NumericalMethodsLab3.dll
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/obj/Debug/net7.0/NumericalMethodsLab3.pdb
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/obj/Debug/net7.0/NumericalMethodsLab3.genruntimeconfig.cache
+/Users/aleksandrstarzhynskyi/Repositories/Git/GitHub/NumericalMethodsLab3/NumericalMethodsLab3/obj/Debug/net7.0/ref/NumericalMethodsLab3.dll
